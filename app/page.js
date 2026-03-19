@@ -19,9 +19,19 @@ export default function Home() {
     setTimeout(() => setToastMessage(''), 2500);
   };
 
-  // PDF印刷
+  // PDF印刷 - ブラウザのヘッダー/フッターを除去
   const handlePrint = () => {
+    // 印刷前にタイトルを空にしてブラウザのヘッダーに表示されないようにする
+    const originalTitle = document.title;
+    document.title = ' ';
+    
+    // 印刷ダイアログを開く
     window.print();
+    
+    // 印刷後にタイトルを元に戻す
+    setTimeout(() => {
+      document.title = originalTitle;
+    }, 1000);
   };
 
   // 保存ダイアログ
