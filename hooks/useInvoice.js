@@ -42,8 +42,8 @@ function getDefaultData() {
     companyName: '株式会社つなげる',
     companyAddress: '大分県大分市片島810-1',
     companyTel: '09087617976',
-    companyEmail: '',
-    registrationNumber: '',
+    companyEmail: 'clear.kk.20@gmail.com',
+    registrationNumber: '3320001018023',
     logoUrl: '',
     stampUrl: '',
 
