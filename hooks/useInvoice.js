@@ -66,7 +66,7 @@ function getDefaultData() {
 
     // その他
     notes: '',
-    bankInfo: '',
+    bankInfo: '住信ＳＢＩネット銀行（金融機関コード0038）\n法人第一支店（支店コード106）\n普通 1528287\n株式会社つなげる',
   };
 }
 
