@@ -979,10 +979,15 @@ body {
    Print Styles
    ============================ */
 
-/* A4用紙設定 - マージン0でブラウザのヘッダー/フッターを除去 */
+/* A4用紙設定 - マージンを極小にしてブラウザのヘッダー/フッターを除去 */
 @page {
   size: A4 portrait;
-  margin: 0;
+  margin: 0mm;
+}
+
+/* ブラウザのヘッダー/フッター領域を上書き */
+@page :first {
+  margin-top: 0mm;
 }
 
 @media print {
@@ -991,20 +996,22 @@ body {
   .app-header,
   .editor-side,
   .modal-overlay,
-  .toast {
+  .toast,
+  .preview-page-number {
     display: none !important;
   }
 
   /* html/body のリセット */
   html, body {
-    width: 210mm;
-    height: 297mm;
+    width: 210mm !important;
+    height: auto !important;
     margin: 0 !important;
     padding: 0 !important;
     background: white !important;
     overflow: visible !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    font-size: 9pt !important;
   }
 
   /* メインレイアウトのリセット */
@@ -1032,17 +1039,21 @@ body {
     padding: 0 !important;
   }
 
-  /* A4用紙の中身 */
+  /* A4用紙の中身 - 1ページに収まるよう調整 */
   .preview-paper {
-    width: 210mm !important;
-    min-height: 297mm !important;
+    width: 100% !important;
+    max-width: 210mm !important;
+    min-height: auto !important;
     box-sizing: border-box !important;
-    padding: 15mm 20mm !important;
+    padding: 10mm 15mm !important;
     margin: 0 !important;
     box-shadow: none !important;
     border: none !important;
     border-radius: 0 !important;
     background: white !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    font-size: 9pt !important;
   }
 
   /* テーブルヘッダーの色を印刷で保持 */
@@ -1057,21 +1068,72 @@ body {
     print-color-adjust: exact !important;
   }
 
-  /* 印刷時のフォントサイズ微調整 */
-  .preview-paper {
-    font-size: 10pt;
+  /* 金額ボックスの色を印刷で保持 */
+  .preview-amount-box {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
+  /* 印刷時のフォントサイズ - コンパクトにして1ページに収める */
   .preview-company-name {
-    font-size: 12pt;
+    font-size: 11pt !important;
   }
 
   .preview-title {
-    font-size: 16pt;
+    font-size: 14pt !important;
+    margin: 4mm 0 !important;
   }
 
   .preview-amount-value {
-    font-size: 14pt;
+    font-size: 13pt !important;
+  }
+
+  .preview-amount-label {
+    font-size: 8pt !important;
+  }
+
+  /* 上部セクションのスペースを縮小 */
+  .preview-top {
+    margin-bottom: 2mm !important;
+  }
+
+  .preview-amount-row {
+    margin-bottom: 3mm !important;
+  }
+
+  /* テーブルのスペースを縮小 */
+  .preview-table {
+    margin-bottom: 3mm !important;
+    font-size: 8.5pt !important;
+  }
+
+  .preview-table th,
+  .preview-table td {
+    padding: 2mm 3mm !important;
+  }
+
+  /* 下部セクションのスペースを縮小 */
+  .preview-bottom {
+    margin-top: 2mm !important;
+    font-size: 8pt !important;
+  }
+
+  .preview-calc-row {
+    padding: 1.5mm 0 !important;
+  }
+
+  .preview-greeting {
+    margin-bottom: 2mm !important;
+  }
+
+  .preview-subject-line {
+    margin-bottom: 2mm !important;
+  }
+
+  /* リンクをテキスト表示に */
+  a {
+    text-decoration: none !important;
+    color: inherit !important;
   }
 }
 
